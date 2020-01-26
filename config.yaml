@@ -70,4 +70,6 @@ whitelistPackagePrefixes:
 - androidx
 - android.arch
 - android.databinding
-- java.lang
+- okhttp3
+- retrofit2
+- java

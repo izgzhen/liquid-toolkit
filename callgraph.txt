@@ -1,0 +1,7 @@
+methodSig g(_gclass, _gname)
+
+class _C {
+  _ret _f(...) {
+    g(...);
+  }
+}

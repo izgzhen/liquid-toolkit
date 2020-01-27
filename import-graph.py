@@ -55,14 +55,24 @@ g = Graph()
 g.add_edges(edges)
 
 to_kill = []
+to_preserve = []
 for node in g.nodes:
     if preserve_pkgs is not None:
         if all(not node.startswith(pkg) for pkg in preserve_pkgs):
             to_kill.append(node)
+        else:
+            to_preserve.append(node)
     else:
         for pkg in filter_pkgs:
             if node.startswith(pkg):
                 to_kill.append(node)
+
+print("Preserve: %s" % to_preserve)
+
+for u, v in zip(to_preserve, to_preserve[1:]):
+    print("Pathes between %s, %s" % (u, v))
+    for p in g.get_all_paths(u, v):
+        print("\t" + str(p))
 
 print("Remove: %s" % to_kill)
 g.remove_nodes_soft(to_kill)
